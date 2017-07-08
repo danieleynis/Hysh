@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/danieleynis/Hysh#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "passport": "^0.3.2"
   }
 }
