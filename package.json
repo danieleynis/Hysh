@@ -1,0 +1,25 @@
+{
+  "name": "hysh",
+  "version": "1.0.0",
+  "description": "Open source image hosting website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieleynis/Hysh.git"
+  },
+  "keywords": [
+    "open",
+    "source",
+    "image",
+    "hosting"
+  ],
+  "author": "Justin Moore, Daniel Eynis, Rudd Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieleynis/Hysh/issues"
+  },
+  "homepage": "https://github.com/danieleynis/Hysh#readme"
+}
