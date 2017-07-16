@@ -23,11 +23,13 @@
   },
   "homepage": "https://github.com/danieleynis/Hysh#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "mongoose": "^4.11.1",
+    "express-session": "^1.15.3",
+    "mongoose": "^4.10.8",
     "nunjucks": "^3.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
