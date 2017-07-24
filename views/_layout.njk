@@ -4,6 +4,7 @@
 <head>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+     {% block css %}{% endblock %}
 </head>
 <body>
      <div class="container">
@@ -12,5 +13,6 @@
     <!-- Boostrap core Javascript -->
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    {% block script%}{% endblock %}
 </body>
 </html>
