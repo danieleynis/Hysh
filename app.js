@@ -58,6 +58,11 @@ nunjucks.configure('views',{
  	res.render('register.njk');
  });
 
+//render photos page
+app.get('/photos',function(req,res){
+	res.render('photos.njk');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
