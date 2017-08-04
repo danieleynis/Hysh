@@ -35,38 +35,18 @@ passport.deserializeUser(function(id, done) {
 require('./passport/login.js')(passport);
 require('./passport/register.js')(passport);
 
-var index = require('./routes/index.js')(passport);
-app.use('/', index);
-
 //nunjucjs configuration
 nunjucks.configure('views',{
 	autoescape: true,
- 	express: app
- });
- app.set('view engine','nunjucks');
-
- //set index page
- app.use('/',index);
-
- //render login page
- app.get('/login',function(req,res){
- 	res.render('login.njk');
- });
-
- //render register page
- app.get('/register',function(req,res){
- 	res.render('register.njk');
- });
-
-//render photos page
-app.get('/photos',function(req,res){
-	res.render('photos.njk');
+	express: app
 });
 
-//render confirmation page
-app.get('/confirmation',function(req,res){
-	res.render('confirmation.njk');
-});
+app.set('view engine','nunjucks');
+
+var index = require('./routes/index.js')(passport);
+
+//set index page
+app.use('/',index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -85,6 +65,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-//listen on localhost port 8080
-app.listen(8080,function(){console.log("Server running");})
+
 module.exports = app;
