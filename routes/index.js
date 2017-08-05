@@ -4,21 +4,21 @@ var router = express.Router();
 
 module.exports = function(passport){
   /* GET home page. */
-  router.get('/', function(req, res, next) {
+    router.get('/', function(req, res, next) {
     res.send("Main page");
   });
 
   router.get('/register', function(req, res){
-    res.sendFile(__dirname + '/register.html');
+    res.render('register.njk');
   });
 
   router.post('/register', passport.authenticate('register', {
-    successRedirect: '/login',
+   successRedirect: '/login',
     failureRedirect: '/register'
   }));
 
   router.get('/login', function(req, res){
-    res.sendFile(__dirname + '/login.html');
+    res.render('login.njk');
   });
 
   router.post('/login', passport.authenticate('login', {
