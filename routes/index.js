@@ -1,31 +1,36 @@
-/**************************************************************** 
-  * Copyright (c) 2017 Rudd Johnson, Daniel Eynis, Justin Moore *
-  * This program is licensed under the "MIT License".           *
-  * Please see the file COPYING in the source                   *
-  * distribution of this software for license terms.            *
-/****************************************************************/
-
 var express = require('express');
 var router = express.Router();
 
 
 module.exports = function(passport){
   /* GET home page. */
-  router.get('/', function(req, res, next) {
+    router.get('/', function(req, res, next) {
     res.send("Main page");
   });
 
+/*Nunjucks rendering for registration page*/
   router.get('/register', function(req, res){
-    res.sendFile(__dirname + '/register.html');
+    res.render('register.njk');
   });
 
   router.post('/register', passport.authenticate('register', {
-    successRedirect: '/login',
+   successRedirect: '/login',
     failureRedirect: '/register'
   }));
 
+/*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
-    res.sendFile(__dirname + '/login.html');
+    res.render('login.njk');
+  });
+
+/*Nunjucks rendering for photos page*/
+router.get('/photos', function(req, res){
+    res.render('photos.njk');
+  });
+
+/*Nunjucks rendering for confirmation page page*/
+router.get('/confirmation', function(req, res){
+    res.render('confirmation.njk');
   });
 
   router.post('/login', passport.authenticate('login', {
