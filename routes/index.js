@@ -13,10 +13,24 @@ module.exports = function(passport){
     res.render('register.njk');
   });
 
-  router.post('/register', passport.authenticate('register', {
-   successRedirect: '/login',
-    failureRedirect: '/register'
-  }));
+  router.post('/register', function(req,res,next) {
+  req.check('email','Not a valid email address').isEmail();
+	req.check('createpassword','password must be atleast 5 characters').isLength({min:5});
+	req.check('createpassword','bos passwords must match').equals(req.body.reenterpassword);
+	var errors = req.validationErrors();
+	if(errors)
+	{
+		//TODO:Pass error to front end 	
+		res.render('register.njk');
+	}
+
+	},
+
+	passport.authenticate('register', {
+   		successRedirect: '/login',
+    		//TODO:output DB error, such as duplicate email address to front end 
+		failureRedirect: '/register'
+  	}));
 
 /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
@@ -33,7 +47,8 @@ router.get('/confirmation', function(req, res){
     res.render('confirmation.njk');
   });
 
-  router.post('/login', passport.authenticate('login', {
+  /*validation and verification of login information*/
+  router.post('/login', passport.authenticate('login', {    
     successRedirect: '/home',
     failureRedirect: '/login'
   }));
