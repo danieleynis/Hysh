@@ -47,8 +47,8 @@ require('./passport/register.js')(passport);
 
 //nunjucks configuration
 nunjucks.configure('views',{
-	autoescape: true,
-	express: app
+  autoescape: true,
+  express: app
 });
 
 app.set('view engine','nunjucks');

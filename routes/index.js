@@ -7,7 +7,10 @@
 
 var express = require('express');
 var router = express.Router();
-
+var multer  = require('multer');
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
+var User = require('../models/user.js');
 
 module.exports = function(passport){
   /* GET home page. */
@@ -15,28 +18,28 @@ module.exports = function(passport){
     res.send("Main page");
   });
 
-/*Nunjucks rendering for registration page*/
+  /*Nunjucks rendering for registration page*/
   router.get('/register', function(req, res){
     res.render('register.njk');
   });
 
   router.post('/register', passport.authenticate('register', {
-   successRedirect: '/login',
+    successRedirect: '/confirmation',
     failureRedirect: '/register'
   }));
 
-/*Nunjucks rendering for login page*/
+  /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
     res.render('login.njk');
   });
 
-/*Nunjucks rendering for photos page*/
-router.get('/photos', function(req, res){
+  /*Nunjucks rendering for photos page*/
+  router.get('/photos', function(req, res){
     res.render('photos.njk');
   });
 
-/*Nunjucks rendering for confirmation page page*/
-router.get('/confirmation', function(req, res){
+  /*Nunjucks rendering for confirmation page page*/
+  router.get('/confirmation', function(req, res){
     res.render('confirmation.njk');
   });
 
@@ -50,13 +53,34 @@ router.get('/confirmation', function(req, res){
     res.redirect('/');
   });
 
-  router.get('/home', function(req, res, next){
-    if(req.isAuthenticated())
-      return next();
-    res.redirect('/');
-  }, function(req, res){
+  router.get('/home', checkAuth, function(req, res){
     res.send("This is your homepage!");
   });
 
+  router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
+    User.findOne({ 'username': req.user.username}, (err, user) => {
+      if(err)
+        res.end("error!");
+
+      if(!user)
+        res.end('error!');
+
+      if(user){
+        user.pics.push(req.file.buffer); 
+        user.save();
+      }
+    });
+  });
+
+  router.get('/upload', checkAuth, (req, res) => {
+    res.sendFile(__dirname + '/upload.html'); // TODO change this to render nunjuck file!
+  });
+
   return router;
+}
+
+var checkAuth = function(req, res, next) {
+  if(req.isAuthenticated())
+    return next();
+  res.redirect('/');
 }
