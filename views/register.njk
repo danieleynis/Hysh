@@ -12,23 +12,31 @@
 <br></br>
 <div class="row" style="margin-top:60px">
     <div class="col-xs-12 col-sm-8 col-md col-sm-offset-2 col-md-offset-4">
-        <form>
+        <form action="/register" method="POST">
             <fieldset>
                 <h2> Create an account </h2>
                     <div class="form-group">
-                        <input type="createusername" class="form-control" id="createuser" placeholder="Enter Username" style="width: 200px;">
+                        <input name="username" type="createusername" class="form-control" id="createuser" placeholder="Enter Username" style="width: 200px;">
                     </div>
                     <div class="form-group">
-                        <input type="createpassword" class="form-control" id="createpassword" placeholder="Enter Password" style="width: 200px;">
+                        <input name="password" type="createpassword" class="form-control" id="createpassword" placeholder="Enter Password" style="width: 200px;">
                     </div>
                     <div class="form-group">
-                        <input type="reenterpassword" class="form-control" id="reenterpassword" placeholder="Re-enter Password" style="width: 200px;">
+                        <input name="reenterpassword" type="reenterpassword" class="form-control" id="reenterpassword" placeholder="Re-enter Password" style="width: 200px;">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" style="width: 200px;">
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" style="width: 200px;">
                     </div>
-                <a href="/confirmation" class="btn btn-primary" role="button">Sign Up</a>
-            </fieldset>
+                <a class="btn btn-primary" role="button">Sign Up</a>
+            	
+		{% if errors %}	
+			<section class ="errors">
+				{% for error in errors %}
+					<li>{{error.title }}</li>
+				{% endfor %}
+			 </section>
+		{% endif %}
+		</fieldset>
         </form>
     </div>
 </div>

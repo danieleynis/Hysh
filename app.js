@@ -24,6 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use(session({
   secret: 'sessionSecret',
   resave: true,
@@ -50,13 +53,9 @@ nunjucks.configure('views',{
 
 app.set('view engine','nunjucks');
 
-var index = require('./routes/index.js')(passport);
-
 //set index page
-app.use('/',index);
-
-app.set('view engine','nunjucks');
 var index = require('./routes/index.js')(passport);
+app.use('/',index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
