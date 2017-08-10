@@ -1,11 +1,24 @@
-{################################################################
-  # Copyright (c) 2017 Rudd Johnson, Daniel Eynis, Justin Moore #
-  # This program is licensed under the "MIT License".           #
-  # Please see the file COPYING in the source                   #
-  # distribution of this software for license terms.            #
-{################################################################}
-
 {% extends '_user.njk' %}
+{% block css %}
+<link href="/stylesheets/style.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
 {{super() }}
+<div class="row" style="text-align: center;">     
+  <div class="span12">
+    <h1>Upload file here!</h1>         
+    <div class="centerupload">
+     <form action="/upload" id="form1">
+      <input type='file' id="imgInp" accept="file"/*>
+      <br></br>
+      <img id="file" src="#"/>
+      <br></br>
+      <button class="btn btn-primary" role="button">Upload</button>
+     </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script%}
+<script src="/js/upload.js"></script>
 {% endblock %}
