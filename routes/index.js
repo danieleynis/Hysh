@@ -7,9 +7,9 @@
 
 var express = require('express');
 var router = express.Router();
-//var multer  = require('multer');
-//var storage = multer.memoryStorage()
-//var upload = multer({ storage: storage })
+var multer  = require('multer');
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 var User = require('../models/user.js');
 
 module.exports = function(passport){
@@ -23,24 +23,23 @@ module.exports = function(passport){
     res.render('register.njk');
   });
 
-  router.post('/register',function(req,res,next){
-	console.log("in register post");
-	req.check('email','Not a valid email address').isEmail();
-  	console.log("past email check");
-	req.check('createpassword','Password must be greater than 5 characters').isLength({min:5});
-  	req.check('createpassword','Passwords must match').equals(req.body.reenterpassword);
-	invalid = req.validateErrors();
-	console.log(invalid);
+  router.post('/register', function(req,res,next) {
+  req.check('email','Not a valid email address').isEmail();
+	req.check('createpassword','password must be atleast 5 characters').isLength({min:5});
+	req.check('createpassword','bos passwords must match').equals(req.body.reenterpassword);
+	var invalid = req.validationErrors();
 	if(invalid)
 	{
 		req.session.invalid = invalid;
 		res.render('register.njk');
 	}
-  },
-  passport.authenticate('register', {
-    successRedirect: '/confirmation',
-    failureRedirect: '/register'
-  }));
+
+	},
+	passport.authenticate('register', {
+   		successRedirect: '/login',
+    		//TODO:output DB error, such as duplicate email address to front end 
+		failureRedirect: '/register'
+  	}));
 
   /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
@@ -70,7 +69,7 @@ module.exports = function(passport){
   router.get('/home', checkAuth, function(req, res){
     res.send("This is your homepage!");
   });
-/*
+
   router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
     User.findOne({ 'username': req.user.username}, (err, user) => {
       if(err)
@@ -85,7 +84,7 @@ module.exports = function(passport){
       }
     });
   });
-*/
+
   router.get('/upload', checkAuth, (req, res) => {
     res.sendFile(__dirname + '/upload.html'); // TODO change this to render nunjuck file!
   });
