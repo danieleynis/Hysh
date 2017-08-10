@@ -28,14 +28,13 @@
                         <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" style="width: 200px;">
                     </div>
                 <a class="btn btn-primary" role="button">Sign Up</a>
-            	{% if errors %}
-			<section class = "errors">
-				{% for errors in errors %}
+	    {% if errors %}
+			<section class = "invalid">
+				{% for error in invalid %}
 					<li> {{this.msg}}</li>
 				{% endfor %}
 			</section>
 		{% endif %}
-	    
 	    </fieldset>
         </form>
     </div>
