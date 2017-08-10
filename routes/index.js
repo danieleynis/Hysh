@@ -24,8 +24,10 @@ module.exports = function(passport){
   });
 
   router.post('/register',function(req,res,next){
+	console.log("in register post");
 	req.check('email','Not a valid email address').isEmail();
-  	req.check('createpassword','Password must be greater than 5 characters').isLength({min:5});
+  	console.log("past email check");
+	req.check('createpassword','Password must be greater than 5 characters').isLength({min:5});
   	req.check('createpassword','Passwords must match').equals(req.body.reenterpassword);
 	invalid = req.validateErrors();
 	console.log(invalid);
