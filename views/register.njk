@@ -28,8 +28,16 @@
                         <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" style="width: 200px;">
                     </div>
                 <button class="btn btn-primary" type="submit" role="button">Sign Up</button>
-            </fieldset>
-        </form>
+            	{% if invalid  %}
+			<div class = "invalid">
+				{% for error in invalid %}
+					<li> {{this.msg}}</li>
+				{% endfor %}
+			</div>
+		  {% endif %}        
+
+	    </fieldset>
+	</form>
     </div>
 </div>
 {% endblock %}

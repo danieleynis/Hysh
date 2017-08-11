@@ -23,10 +23,23 @@ module.exports = function(passport){
     res.render('register.njk');
   });
 
-  router.post('/register', passport.authenticate('register', {
-    successRedirect: '/confirmation',
-    failureRedirect: '/register'
-  }));
+  router.post('/register', function(req,res,next) {
+  req.check('email','Not a valid email address').isEmail();
+	req.check('createpassword','password must be atleast 5 characters').isLength({min:5});
+	req.check('createpassword','bos passwords must match').equals(req.body.reenterpassword);
+	var invalid = req.validationErrors();
+	if(invalid)
+	{
+		req.session.invalid = invalid;
+		res.render('register.njk');
+	}
+	 return next();
+	},
+	passport.authenticate('register', {
+   		successRedirect: '/login',
+    		//TODO:output DB error, such as duplicate email address to front end 
+		failureRedirect: '/register'
+  	}));
 
   /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
