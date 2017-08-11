@@ -57,6 +57,11 @@ module.exports = function(passport){
     res.send("This is your homepage!");
   });
 
+  /*Nunjucks rendering for confirmation page*/
+  router.get('/upload',function(req,res){
+  	res.render('upload.njk');
+  });
+
   router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
     User.findOne({ 'username': req.user.username}, (err, user) => {
       if(err)
