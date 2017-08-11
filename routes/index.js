@@ -33,7 +33,7 @@ module.exports = function(passport){
 		req.session.invalid = invalid;
 		res.render('register.njk');
 	}
-
+	 return next();
 	},
 	passport.authenticate('register', {
    		successRedirect: '/login',
