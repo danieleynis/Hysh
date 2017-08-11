@@ -26,7 +26,7 @@ module.exports = function(passport){
   router.post('/register', function(req,res,next) {
   req.check('email','Not a valid email address').isEmail();
 	req.check('createpassword','password must be atleast 5 characters').isLength({min:5});
-	req.check('createpassword','bos passwords must match').equals(req.body.reenterpassword);
+	req.check('createpassword','both passwords must match').equals(req.body.reenterpassword);
 	var invalid = req.validationErrors();
 	if(invalid)
 	{
@@ -35,6 +35,7 @@ module.exports = function(passport){
 	}
 	 return next();
 	},
+		//TODO: passport authentication
 	passport.authenticate('register', {
    		successRedirect: '/login',
     		//TODO:output DB error, such as duplicate email address to front end 
