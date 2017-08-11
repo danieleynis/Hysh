@@ -57,7 +57,7 @@ module.exports = function(passport){
     res.send("This is your homepage!");
   });
 
-  /*Nunjucks rendering for confirmation page*/
+  /*Nunjucks rendering for upload page*/
   router.get('/upload',function(req,res){
   	res.render('upload.njk');
   });
