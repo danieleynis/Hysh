@@ -61,7 +61,7 @@ module.exports = function(passport){
   router.get('/upload',function(req,res){
   	res.render('upload.njk');
   });
-
+  
   router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
     User.findOne({ 'username': req.user.username}, (err, user) => {
       if(err)
@@ -76,14 +76,9 @@ module.exports = function(passport){
       }
     });
   });
-
-  router.get('/upload', checkAuth, (req, res) => {
-    res.sendFile(__dirname + '/upload.html'); // TODO change this to render nunjuck file!
-  });
-
+  
   return router;
 }
-
 var checkAuth = function(req, res, next) {
   if(req.isAuthenticated())
     return next();
