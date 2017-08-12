@@ -8,6 +8,13 @@
 {% extends '_user.njk' %}
 {% block css %}
 <link href="/stylesheets/style.css" rel="stylesheet">
+<style type ="text/css">
+.container{
+	position: relative;
+	width: 200px;
+	height: 200px;
+}
+</style>
 {% endblock %}
 {% block content %}
 {{super() }}
@@ -16,9 +23,11 @@
     <h1>Upload file here!</h1>         
     <div class="centerupload">
      <form action="/upload" id="form1" method="POST">
-      <input type='file' id="imgInp" accept="file"/*>
+      <input type='file' id="imgInp" accept="image"/*>
       <br></br>
-      <img id="file" src="#"/>
+      <div class = "container">
+      <img id="file" src="#" class="img-responsive"/>
+      </div>
       <br></br>
       <button class="btn btn-primary" role="button">Upload</button>
      </form>
