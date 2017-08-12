@@ -43,6 +43,11 @@ module.exports = function(passport){
     res.render('confirmation.njk');
   });
 
+  /*Nunjucks rendering for confirmation page page*/
+  router.get('/upload', function(req, res){
+  res.render('upload.njk');
+  });
+
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/home',
     failureRedirect: '/login'
