@@ -5,18 +5,15 @@
   * distribution of this software for license terms.            *
 /****************************************************************/
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-.centerupload {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-}
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#file').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+$("#imgInp").change(function(){
+    readURL(this);
+});
