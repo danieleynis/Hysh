@@ -8,4 +8,20 @@
 {% extends '_user.njk' %}
 {% block content %}
 {{super() }}
+
+<!-- Change the items variable to whatever
+    is being passed in by node. Note that this is
+    choice of formatting. The batch can be changed
+    to any number
+
+{% for item in items | batch(2) %}
+<div class="row">
+    <div class="span4">{{ item }}</div>
+</div>
+{% endfor %}
+
+-->
+
 {% endblock %}
+
+

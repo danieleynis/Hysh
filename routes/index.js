@@ -35,7 +35,8 @@ module.exports = function(passport){
 
   /*Nunjucks rendering for photos page*/
   router.get('/photos', function(req, res){
-    res.render('photos.njk');
+    //Change items to whatever is being sent to be rendered
+    res.render('photos.njk', /*{items: items} */);
   });
 
   /*Nunjucks rendering for confirmation page page*/
