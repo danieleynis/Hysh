@@ -25,9 +25,9 @@ module.exports = function(passport){
   
   /*post from registration form, validate and authenticate user input*/
   router.post('/register', function(req,res,next) {
-  	req.check('email','Not a valid email address').isEmail();				//validate real email address 
-	req.check('password','password must be atleast 5 characters').isLength({min:5}); 	//validate password length
-	req.check('password','both passwords must match').equals(req.body.reenterpassword); 	//validate that passwords match 
+  	req.check('email','Not a valid email address').isEmail();
+	req.check('password','password must be atleast 5 characters').isLength({min:5});
+	req.check('password','both passwords must match').equals(req.body.reenterpassword);
 	var invalid = req.validationErrors();
 	if(invalid)
 	{
