@@ -1,6 +1,7 @@
 HYSH 
 ====== 
-
+Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
+<br \>
 What is HYSH? 
 ---------- 
 
@@ -22,15 +23,16 @@ How to use HYSH?
 
 Contacts
 --------
-Daniel Eyis - eynis@pdx.edu
-Rudd Johnson - rujo2@pdx.edu
-Justin Moore - jusmoore@pdx.edu
+Daniel Eynis - eynis@pdx.edu <br />
+Rudd Johnson - rujo2@pdx.edu <br />
+Justin Moore - jusmoore@pdx.edu <br />
 
 Progress
 ---------
-[a link](https://github.com/danieleynis/Hysh/blob/master/weekthree.md)
+[Week Three Progress](https://github.com/danieleynis/Hysh/blob/master/weekthree.md)
 
 ## License 
 
 [The MIT License](http://opensource.org/licenses/MIT)
+
 
