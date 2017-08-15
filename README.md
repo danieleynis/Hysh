@@ -1,7 +1,9 @@
 HYSH 
 ====== 
+
 Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
-<br \>
+<br />
+
 What is HYSH? 
 ---------- 
 
