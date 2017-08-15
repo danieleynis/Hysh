@@ -1,6 +1,7 @@
 HYSH 
 ====== 
-
+Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
+<br \>
 What is HYSH? 
 ---------- 
 
@@ -33,6 +34,5 @@ Progress
 ## License 
 
 [The MIT License](http://opensource.org/licenses/MIT)
-<br \>
-Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
+
 
