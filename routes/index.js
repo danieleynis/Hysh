@@ -25,14 +25,19 @@ module.exports = function(passport){
   
   /*post from registration form, validate and authenticate user input*/
   router.post('/register', function(req,res,next) {
-  	req.check('email','Not a valid email address').isEmail();
+  	console.log("in function!");
+	req.check('email','Not a valid email address').isEmail();
 	req.check('password','password must be atleast 5 characters').isLength({min:5});
 	req.check('password','both passwords must match').equals(req.body.reenterpassword);
-	var invalid = req.validationErrors();
-	if(invalid)
+	var errors = req.validationErrors();
+	if(errors)
 	{
-		res.send(invalid);		//if invalid, output errors on page and redirect to same page
-		res.redirect('register');
+		console.log(errors);
+		JSON.stringify(errors)
+		for(var i=0; i<2; ++i){
+		console.log(errors[i].msg);
+		}
+		res.render('register.njk',errors);
 		return;					//do not proceed to authentication if invalid
 	}
 	next();						//pass to input to passport authentication
@@ -51,6 +56,7 @@ module.exports = function(passport){
   router.get('/photos', function(req, res){
     res.render('photos.njk');
   });
+
 
   /*Nunjucks rendering for confirmation page page*/
   router.get('/confirmation', function(req, res){
@@ -76,7 +82,7 @@ module.exports = function(passport){
   	res.render('upload.njk');
   });
   
-  router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
+    router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
     User.findOne({ 'username': req.user.username}, (err, user) => {
       if(err)
         res.end("error!");
