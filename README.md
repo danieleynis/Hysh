@@ -22,7 +22,7 @@ How to use HYSH?
 
 Contacts
 --------
-Daniel Eyis - eynis@pdx.edu <br />
+Daniel Eynis - eynis@pdx.edu <br />
 Rudd Johnson - rujo2@pdx.edu <br />
 Justin Moore - jusmoore@pdx.edu <br />
 
@@ -33,4 +33,6 @@ Progress
 ## License 
 
 [The MIT License](http://opensource.org/licenses/MIT)
+<br \>
+Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
 
