@@ -22,11 +22,25 @@ module.exports = function(passport){
   router.get('/register', function(req, res){
     res.render('register.njk');
   });
-
-  router.post('/register', passport.authenticate('register', {
-    successRedirect: '/confirmation',
-    failureRedirect: '/register'
-  }));
+  
+  /*post from registration form, validate and authenticate user input*/
+  router.post('/register', function(req,res,next) {
+  	req.check('email','Not a valid email address').isEmail();
+	req.check('password','password must be atleast 5 characters').isLength({min:5});
+	req.check('password','both passwords must match').equals(req.body.reenterpassword);
+	var invalid = req.validationErrors();
+	if(invalid)
+	{
+		res.send(invalid);		//if invalid, output errors on page and redirect to same page
+		res.redirect('register');
+		return;					//do not proceed to authentication if invalid
+	}
+	next();						//pass to input to passport authentication
+	},
+		passport.authenticate('register', {
+		successRedirect: '/login',
+		failureRedirect: '/register'
+  	}));
 
   /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
