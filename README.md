@@ -1,8 +1,38 @@
-# Hysh
-Open source image hosting website
+HYSH 
+====== 
+Copyright (c) 2017 Daniel Eynis, Rudd Johnson, and Justin Moore
+<br \>
+What is HYSH? 
+---------- 
 
-## Week 3 Project Update
-* The team has met in the previous week to talk about requirements and design, as well as establishing a workflow. Initial tasks were creates during this meeting. The initial tasks involve creating the skeleton of the app. Initial work will involve the login/authentication system for user accounts. Users should be able to sign up or login into their account. A task involving creating the frontend was also created.
-* A specification, requirements, and design document was created. It includes the core features that we would like to implement. Drawings of what we want the website to look like are also included. Stretch goals have also been established to add more feature and functionality to the image hosting website.
-* The desired file structure for the project has been created and takes the form of MVC. In addition to this preliminary code was generated to get a simple NodeJS app up and running providing a framework. The app skeleton was created using the [express generator](https://expressjs.com/en/starter/generator.html). The desired dependencies were kept and the others removed.
-* Views were added to the project which will be used to render the login and sign up pages. Nunjucks templating language will be used for those views. Work is also currently being done on the login authentication system which will use PassportJS. The chosen database to store information will be MongoDB. In addition the team has chosen the MIT licence to be used for the project.
+HYSH is an image hosting application that allows users to store their images on the web. HYSH provides a secure environment by allowing users the ability to create an account so that they are able to save and delete images at their convenience. Once a user has set up an account they are able to store as many photos as they wish and access them as they please.
+
+How to get HYSH running? 
+----------     
+1. Clone this application with - `https://github.com/danieleynis/Hysh.git`     
+2. Download all dependencies by using the `yarn` command in your console.     
+3. Make sure that you have MongoDb installed and have it running locally using the command `mongod` in a terminal.     
+4. Use the command `npm start` in a terminal to run the application. 
+
+How to use HYSH? 
+--------
+
+1. Create an account 
+2. Login with newly created or existing account
+3. Look at photos that you have previously stored or upload new photos
+
+Contacts
+--------
+Daniel Eynis - eynis@pdx.edu <br />
+Rudd Johnson - rujo2@pdx.edu <br />
+Justin Moore - jusmoore@pdx.edu <br />
+
+Progress
+---------
+[Week Three Progress](https://github.com/danieleynis/Hysh/blob/master/weekthree.md)
+
+## License 
+
+[The MIT License](http://opensource.org/licenses/MIT)
+
+
