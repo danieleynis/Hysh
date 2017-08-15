@@ -22,13 +22,13 @@ How to use HYSH?
 
 Contacts
 --------
-Daniel Eyis - eynis@pdx.edu <br \>
-Rudd Johnson - rujo2@pdx.edu <br \>
+Daniel Eyis - eynis@pdx.edu
+Rudd Johnson - rujo2@pdx.edu
 Justin Moore - jusmoore@pdx.edu
 
 Progress
 ---------
-[Week three progress](https://github.com/danieleynis/Hysh/blob/master/weekthree.md)
+[a link](https://github.com/danieleynis/Hysh/blob/master/weekthree.md)
 
 ## License 
 
