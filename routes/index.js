@@ -38,6 +38,21 @@ module.exports = function(passport){
     res.render('photos.njk');
   });
 
+  /*output users photos to photos page*/
+   router.post('/photos', checkAuth, upload.single('picture'), function(req, res) {
+    User.findOne({ 'username': req.user.username}, (err, user) => {
+      if(err)
+        res.end("error!");
+
+      if(!user)
+        res.end('error!');
+
+      if(user){
+      	res.render('photos.njk',user.pics); 
+      }
+    });
+  });
+
   /*Nunjucks rendering for confirmation page page*/
   router.get('/confirmation', function(req, res){
     res.render('confirmation.njk');

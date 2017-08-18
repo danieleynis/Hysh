@@ -8,4 +8,19 @@
 {% extends '_user.njk' %}
 {% block content %}
 {{super() }}
+	{% if images %}
+		{% for photo in buffer %}
+			<div class = "row">
+   				<div class = "col-sm-6 col-md-3">
+      					<a href = "#" class = "thumbnail">
+        					<img src = {{photo}}>
+      					</a>
+   				</div>
+   
+			</div>
+			<br>
+		{% endfor %}
+	{% else %}
+	<p>No photos have been uploaded</p>
+	{% endif %}
 {% endblock %}
