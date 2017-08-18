@@ -42,7 +42,7 @@ module.exports = function(passport){
 		return next(err);
 	}
 	if(proceed){
-		return res.redirect('/login');	//if username is not present, route to login
+		return res.redirect('/confirmation');	//if username is not present, route to login
 	}
 	if(!proceed){	
 		res.render('register.njk',{usernameStatus: "Username is not available"}); //if username is present, rerender with error msg
@@ -83,7 +83,7 @@ module.exports = function(passport){
 		return next(err);
 	}
 	if(proceed){
-		return res.redirect('/home');	//if username is not present, route to home
+		res.render("photos.njk");	//if username is  present, route to photos
 	}
 	if(!proceed){	
 		res.render('login.njk',{usernameStatus: "Incorrect username or password"}); //if username is present, rerender with error msg
