@@ -6,6 +6,8 @@ What is HYSH?
 ---------- 
 
 HYSH is an image hosting application that allows users to store their images on the web. HYSH provides a secure environment by allowing users the ability to create an account so that they are able to save and delete images at their convenience. Once a user has set up an account they are able to store as many photos as they wish and access them as they please.
+*Validation and output of verification/validation errors to the UI are not yet merged to master.
+*These features can be found in RuddJohnson/ValidateRegister
 
 How to get HYSH running? 
 ----------     
