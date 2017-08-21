@@ -22,11 +22,33 @@ module.exports = function(passport){
   router.get('/register', function(req, res){
     res.render('register.njk');
   });
+  
+  /*post from registration form, validate and authenticate user input*/
+  router.post('/register', function(req,res,next) {
+	req.check('email','Not a valid email address').isEmail();
+	req.check('password','password must be atleast 5 characters').isLength({min:5});
+	req.check('reenterpassword','both passwords must match').equals(req.body.password);
+	var errors = req.validationErrors();
 
-  router.post('/register', passport.authenticate('register', {
-    successRedirect: '/confirmation',
-    failureRedirect: '/register'
-  }));
+	if(errors)
+	{
+		console.log(errors);			
+		res.render('register.njk',{errors:errors});
+		return;					//do not proceed to authentication if invalid
+	}
+	//after validating form input, authenticate with passport
+	passport.authenticate('register', function(err,proceed,info){
+	if(err){
+		return next(err);
+	}
+	if(proceed){
+		return res.redirect('/confirmation');	//if username is not present, route to login
+	}
+	if(!proceed){	
+		res.render('register.njk',{usernameStatus: "Username is not available"}); //if username is present, rerender with error msg
+	}
+	})(req,res,next);
+  	});
 
   /*Nunjucks rendering for login page*/
   router.get('/login', function(req, res){
@@ -38,15 +60,36 @@ module.exports = function(passport){
     res.render('photos.njk');
   });
 
+
   /*Nunjucks rendering for confirmation page page*/
   router.get('/confirmation', function(req, res){
     res.render('confirmation.njk');
   });
 
-  router.post('/login', passport.authenticate('login', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }));
+/*Validation and authentication for login page*/
+  router.post('/login', function(req,res,next) {
+	req.check('password','password must be atleast 5 characters').isLength({min:5});
+	var errors = req.validationErrors();
+
+	if(errors)
+	{
+		console.log(errors);			
+		res.render('login.njk',{error:"Password must be at least 5 characters"});
+		return;					//do not proceed to authentication if invalid
+	}
+	//after validating form input, authenticate with passport
+	passport.authenticate('login', function(err,proceed,info){
+	if(err){
+		return next(err);
+	}
+	if(proceed){
+		res.render("photos.njk");	//if username is  present, route to photos
+	}
+	if(!proceed){	
+		res.render('login.njk',{usernameStatus: "Incorrect username or password"}); //if username is present, rerender with error msg
+	}
+	})(req,res,next);
+ });
 
   router.get('/logout', function(req, res){
     req.logout();
@@ -62,7 +105,7 @@ module.exports = function(passport){
   	res.render('upload.njk');
   });
   
-  router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
+    router.post('/upload', checkAuth, upload.single('picture'), function(req, res) {
     User.findOne({ 'username': req.user.username}, (err, user) => {
       if(err)
         res.end("error!");
